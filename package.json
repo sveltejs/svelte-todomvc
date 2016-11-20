@@ -1,0 +1,30 @@
+{
+  "name": "svelte-todomvc",
+  "version": "1.0.0",
+  "description": "TodoMVC implemented in Svelte",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Rich-Harris/svelte-todomvc.git"
+  },
+  "keywords": [
+    "svelte",
+    "todomvc"
+  ],
+  "author": "Rich Harris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/Rich-Harris/svelte-todomvc/issues"
+  },
+  "homepage": "https://gitlab.com/Rich-Harris/svelte-todomvc#README",
+  "dependencies": {
+    "todomvc-app-css": "^2.0.6",
+    "todomvc-common": "^1.0.3"
+  },
+  "devDependencies": {
+    "rollup": "^0.36.3"
+  }
+}
