@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "TodoMVC implemented in Svelte",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "copyfiles": "cp index.html dist/index.html && cp node_modules/todomvc-app-css/index.css dist/todomvc-app-css.css && cp node_modules/todomvc-common/base.css dist/todomvc-common.css && cp node_modules/todomvc-common/base.js dist/todomvc-common.js",
+    "build": "npm run copyfiles && rollup -c",
+    "build:min": "npm run copyfiles && rollup -c --environment production",
+    "dev": "npm run copyfiles && rollup -c -w",
+    "deploy": "surge dist svelte-todomvc.surge.sh",
+    "predeploy": "npm run build:min"
   },
+  "files": [
+    "index.html",
+    "dist",
+    "node_modules/todomvc-app-css/index.css"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/sveltejs/svelte-todomvc.git"
@@ -26,6 +35,9 @@
   },
   "devDependencies": {
     "rollup": "^0.36.3",
-    "rollup-plugin-svelte": "0.0.2"
+    "rollup-plugin-buble": "^0.14.0",
+    "rollup-plugin-svelte": "0.0.2",
+    "rollup-plugin-uglify": "^1.0.1",
+    "surge": "^0.18.0"
   }
 }
