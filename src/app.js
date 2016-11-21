@@ -1,5 +1,5 @@
-import createComponent from './TodoMVC.html';
+import TodoMVC from './TodoMVC.html';
 
-window.todomvc = createComponent({
+window.todomvc = new TodoMVC({
 	target: document.querySelector( '.todoapp' )
 });

@@ -8,7 +8,8 @@
     "build:min": "npm run copyfiles && rollup -c --environment production",
     "dev": "npm run copyfiles && rollup -c -w",
     "deploy": "surge dist svelte-todomvc.surge.sh",
-    "predeploy": "npm run build:min"
+    "predeploy": "npm run build:min",
+    "start": "http-server dist & npm run dev"
   },
   "files": [
     "index.html",
@@ -36,7 +37,7 @@
   "devDependencies": {
     "rollup": "^0.36.3",
     "rollup-plugin-buble": "^0.14.0",
-    "rollup-plugin-svelte": "0.0.2",
+    "rollup-plugin-svelte": "^0.1.0",
     "rollup-plugin-uglify": "^1.0.1",
     "surge": "^0.18.0"
   }
