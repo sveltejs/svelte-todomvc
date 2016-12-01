@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "TodoMVC implemented in Svelte",
   "scripts": {
-    "copyfiles": "cp index.html dist/index.html && cp node_modules/todomvc-app-css/index.css dist/todomvc-app-css.css && cp node_modules/todomvc-common/base.css dist/todomvc-common.css && cp node_modules/todomvc-common/base.js dist/todomvc-common.js",
+    "copyfiles": "mkdir -p dist && cp index.html dist/index.html && cp node_modules/todomvc-app-css/index.css dist/todomvc-app-css.css && cp node_modules/todomvc-common/base.css dist/todomvc-common.css && cp node_modules/todomvc-common/base.js dist/todomvc-common.js",
     "build": "npm run copyfiles && rollup -c",
     "build:min": "npm run copyfiles && rollup -c --environment production",
     "dev": "npm run copyfiles && rollup -c -w",
