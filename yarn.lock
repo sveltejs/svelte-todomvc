@@ -1009,9 +1009,9 @@ through@2:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
-todomvc-app-css@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.1.0.tgz#b6f2716d339afa2e5f799347d2a48b05396242a5"
+todomvc-app-css@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.0.1.tgz#f64d50b744a8a83c1151a08055b88f3aa5ccb052"
 
 todomvc-common@^1.0.3:
   version "1.0.3"
