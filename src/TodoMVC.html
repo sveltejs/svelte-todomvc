@@ -80,13 +80,8 @@
 		}),
 
 		computed: {
-			numActive ( items ) {
-				return items.filter( item => !item.completed ).length;
-			},
-
-			numCompleted ( items ) {
-				return items.filter( item => item.completed ).length;
-			}
+			numActive: items => items.filter( item => !item.completed ).length,
+			numCompleted: items => items.filter( item => item.completed ).length
 		},
 
 		helpers: {
@@ -97,7 +92,7 @@
 			}
 		},
 
-		onrender () {
+		oncreate () {
 			const updateView = () => {
 				let currentFilter = 'all';
 				if ( window.location.hash === '#/active' ) {

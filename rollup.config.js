@@ -1,13 +1,14 @@
 import svelte from 'rollup-plugin-svelte';
 import buble from 'rollup-plugin-buble';
-import uglify from 'rollup-plugin-uglify';
+import closure from 'rollup-plugin-closure-compiler-js';
+import filesize from 'rollup-plugin-filesize';
 
 const plugins = [ svelte() ];
-if ( process.env.production ) plugins.push( buble(), uglify() );
+if ( process.env.production ) plugins.push( buble(), closure(), filesize() );
 
 export default {
-	entry: 'src/app.js',
-	dest: 'dist/bundle.js',
+	entry: 'src/main.js',
+	dest: 'public/bundle.js',
 	format: 'iife',
 	plugins,
 	sourceMap: true
