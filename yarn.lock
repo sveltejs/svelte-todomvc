@@ -439,6 +439,10 @@ estree-walker@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.3.1.tgz#e6b1a51cf7292524e7237c312e5fe6660c1ce1aa"
 
+estree-walker@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.5.2.tgz#d3850be7529c9580d815600b53126515e146dd39"
+
 esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
@@ -1253,6 +1257,10 @@ request@2.83.0:
     tunnel-agent "^0.6.0"
     uuid "^3.1.0"
 
+require-relative@^0.8.7:
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
+
 restore-cursor@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/restore-cursor/-/restore-cursor-2.0.0.tgz#9f7ee287f82fd326d4fd162923d62129eee0dfaf"
@@ -1295,12 +1303,13 @@ rollup-plugin-filesize@^4.0.1:
     gzip-size "^3.0.0"
     terser "^3.8.0"
 
-rollup-plugin-svelte@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-svelte/-/rollup-plugin-svelte-1.6.1.tgz#19e1f602f601fbe8dd45ae8d4d5f4dcaf47dbbcb"
+rollup-plugin-svelte@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-svelte/-/rollup-plugin-svelte-4.2.1.tgz#12c4eab919a0506552d5b1c909476939abde5b7e"
   dependencies:
-    rollup-pluginutils "^2.0.1"
-    svelte "^1.11.2"
+    require-relative "^0.8.7"
+    rollup-pluginutils "^2.3.0"
+    sourcemap-codec "^1.4.1"
 
 rollup-plugin-uglify@^4.0.0:
   version "4.0.0"
@@ -1314,6 +1323,13 @@ rollup-pluginutils@^2.0.1:
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.0.1.tgz#7ec95b3573f6543a46a6461bd9a7c544525d0fc0"
   dependencies:
     estree-walker "^0.3.0"
+    micromatch "^2.3.11"
+
+rollup-pluginutils@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.3.1.tgz#760d185ccc237dedc12d7ae48c6bcd127b4892d0"
+  dependencies:
+    estree-walker "^0.5.2"
     micromatch "^2.3.11"
 
 rollup@^0.64.1:
@@ -1403,6 +1419,10 @@ source-map@~0.4.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.4.4.tgz#eba4f5da9c0dc999de68032d8b4f76173652036b"
   dependencies:
     amdefine ">=0.0.4"
+
+sourcemap-codec@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.1.tgz#c8fd92d91889e902a07aee392bdd2c5863958ba2"
 
 split@0.3.1:
   version "0.3.1"
@@ -1509,9 +1529,9 @@ surge@^0.20.1:
     tarr "1.0.3"
     url-parse-as-address "1.0.0"
 
-svelte@^1.11.2:
-  version "1.13.6"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-1.13.6.tgz#716a509f80a6786393883415d79eccff87464881"
+svelte@2.9.11:
+  version "2.9.11"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-2.9.11.tgz#1cf6516c790adeb12bc1ea554b28e0c01789a37c"
 
 tar-fs@^1.13.0:
   version "1.16.3"
