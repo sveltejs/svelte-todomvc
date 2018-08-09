@@ -1597,9 +1597,9 @@ to-buffer@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/to-buffer/-/to-buffer-1.1.1.tgz#493bd48f62d7c43fcded313a03dcadb2e1213a80"
 
-todomvc-app-css@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.0.1.tgz#f64d50b744a8a83c1151a08055b88f3aa5ccb052"
+todomvc-app-css@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/todomvc-app-css/-/todomvc-app-css-2.1.2.tgz#f644c1308ba51b983436497e30f3abe961ca9c62"
 
 todomvc-common@^1.0.5:
   version "1.0.5"
