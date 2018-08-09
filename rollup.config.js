@@ -22,7 +22,7 @@ export default {
 	output: {
 		file: 'public/bundle.js',
 		format: 'iife',
-		sourceMap: true
+		sourcemap: true
 	},
 	plugins
 };
