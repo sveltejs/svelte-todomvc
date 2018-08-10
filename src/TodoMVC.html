@@ -11,7 +11,7 @@
 		<ul class="todo-list">
 			{#each items as item, index}
 				{#if filter(item, currentFilter)}
-					<li class="{ item.completed ? 'completed' : '' } { editing === index ? 'editing' : '' }">
+					<li class="{item.completed ? 'completed' : ''} {editing === index ? 'editing' : ''}">
 						<div class="view">
 							<input class="toggle" type="checkbox" bind:checked="item.completed">
 							<label on:dblclick="edit(index)">{item.description}</label>
@@ -32,9 +32,9 @@
 			</span>
 
 			<ul class="filters">
-				<li><a class="{ currentFilter === 'all' ? 'selected' : '' }" href="#/">All</a></li>
-				<li><a class="{ currentFilter === 'active' ? 'selected' : '' }" href="#/active">Active</a></li>
-				<li><a class="{ currentFilter === 'completed' ? 'selected' : '' }" href="#/completed">Completed</a></li>
+				<li><a class="{currentFilter === 'all' ? 'selected' : ''}" href="#/">All</a></li>
+				<li><a class="{currentFilter === 'active' ? 'selected' : ''}" href="#/active">Active</a></li>
+				<li><a class="{currentFilter === 'completed' ? 'selected' : ''}" href="#/completed">Completed</a></li>
 			</ul>
 
 			{#if numCompleted}
@@ -50,17 +50,17 @@
 	const ENTER_KEY = 13;
 	const ESCAPE_KEY = 27;
 
-	function keyEvent ( code ) {
-		return function ( node, callback ) {
-			function keydownHandler ( event ) {
-				if ( event.which === code ) callback.call( this, event );
+	function keyEvent(code) {
+		return function(node, callback) {
+			function keydownHandler (event) {
+				if (event.which === code) callback.call(this, event);
 			}
 
-			node.addEventListener( 'keydown', keydownHandler, false );
+			node.addEventListener('keydown', keydownHandler, false);
 
 			return {
-				teardown () {
-					node.removeEventListener( 'keydown', keydownHandler, false );
+				teardown() {
+					node.removeEventListener('keydown', keydownHandler, false);
 				}
 			};
 		};
@@ -68,8 +68,8 @@
 
 	let items;
 	try {
-		items = JSON.parse( localStorage.getItem( 'todos-svelte' ) ) || [];
-	} catch ( err ) {
+		items = JSON.parse(localStorage.getItem('todos-svelte')) || [];
+	} catch (err) {
 		items = [];
 	}
 
@@ -80,63 +80,63 @@
 		}),
 
 		computed: {
-			numActive: ({ items }) => items.filter( item => !item.completed ).length,
-			numCompleted: ({ items }) => items.filter( item => item.completed ).length
+			numActive: ({ items }) => items.filter(item => !item.completed).length,
+			numCompleted: ({ items }) => items.filter(item => item.completed).length
 		},
 
 		helpers: {
-			filter ( item, currentFilter ) {
-				if ( currentFilter === 'all' ) return true;
-				if ( currentFilter === 'completed' ) return item.completed;
-				if ( currentFilter === 'active' ) return !item.completed;
+			filter (item, currentFilter) {
+				if (currentFilter === 'all') return true;
+				if (currentFilter === 'completed') return item.completed;
+				if (currentFilter === 'active') return !item.completed;
 			}
 		},
 
-		oncreate () {
+		oncreate() {
 			const updateView = () => {
 				let currentFilter = 'all';
-				if ( window.location.hash === '#/active' ) {
+				if (window.location.hash === '#/active') {
 					currentFilter = 'active';
-				} else if ( window.location.hash === '#/completed' ) {
+				} else if (window.location.hash === '#/completed') {
 					currentFilter = 'completed';
 				}
 
 				this.set({ currentFilter });
 			};
 
-			window.addEventListener( 'hashchange', updateView );
+			window.addEventListener('hashchange', updateView);
 			updateView();
 		},
 
-		onstate ({ changed, current, previous }) {
+		onstate({ changed, current, previous }) {
 			if (previous && changed.items) {
 				try {
-					localStorage.setItem( 'todos-svelte', JSON.stringify( current.items ) );
-				} catch ( err ) {
+					localStorage.setItem('todos-svelte', JSON.stringify(current.items));
+				} catch (err) {
 					// noop
 				}
 			}
 		},
 
 		methods: {
-			blur ( node ) {
+			blur(node) {
 				node.blur();
 			},
 
-			cancel () {
+			cancel() {
 				this.set({ editing: null });
 			},
 
-			clearCompleted () {
-				const items = this.get().items.filter( item => !item.completed );
+			clearCompleted() {
+				const items = this.get().items.filter(item => !item.completed);
 				this.set({ items });
 			},
 
-			edit ( index ) {
+			edit(index) {
 				this.set({ editing: index });
 			},
 
-			newTodo ( description ) {
+			newTodo(description) {
 				const { items } = this.get();
 				items.push({
 					description,
@@ -147,14 +147,14 @@
 				this.refs.newTodo.value = '';
 			},
 
-			remove ( index ) {
+			remove(index) {
 				const { items } = this.get();
-				items.splice( index, 1 );
+				items.splice(index, 1);
 
 				this.set({ items });
 			},
 
-			submit ( description ) {
+			submit(description) {
 				const { items } = this.get();
 				const index = this.get().editing;
 
@@ -163,10 +163,10 @@
 				this.set({ items, editing: null });
 			},
 
-			toggleAll ( checked ) {
+			toggleAll(checked) {
 				const { items } = this.get();
 
-				items.forEach( item => {
+				items.forEach(item => {
 					item.completed = checked;
 				});
 
@@ -175,8 +175,8 @@
 		},
 
 		events: {
-			enter: keyEvent( ENTER_KEY ),
-			escape: keyEvent( ESCAPE_KEY )
+			enter: keyEvent(ENTER_KEY),
+			escape: keyEvent(ESCAPE_KEY)
 		}
 	};
 </script>
