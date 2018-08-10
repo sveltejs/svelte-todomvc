@@ -1,24 +1,9 @@
 import svelte from 'rollup-plugin-svelte';
-import buble from 'rollup-plugin-buble';
-import closure from 'rollup-plugin-closure-compiler-js';
+import { terser } from 'rollup-plugin-terser';
+import closure from '@ampproject/rollup-plugin-closure-compiler';
 import filesize from 'rollup-plugin-filesize';
 
-// you can use UglifyJS instead of Closure — the result will be ~3.3kb
-// import { uglify } from 'rollup-plugin-uglify';
-
 const prod = !process.env.ROLLUP_WATCH;
-
-const plugins = [svelte()];
-
-if (prod) {
-	plugins.push(
-		buble(),
-		closure({
-			compilationLevel: 'ADVANCED'
-		}),
-		filesize()
-	);
-}
 
 export default {
 	input: 'src/main.js',
@@ -27,5 +12,9 @@ export default {
 		format: 'iife',
 		sourcemap: true
 	},
-	plugins
+	plugins: [
+		svelte(),
+		prod && terser(), // you can also try `closure()`
+		prod && filesize()
+	]
 };
