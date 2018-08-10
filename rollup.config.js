@@ -6,8 +6,11 @@ import filesize from 'rollup-plugin-filesize';
 // you can use UglifyJS instead of Closure — the result will be ~3.3kb
 // import { uglify } from 'rollup-plugin-uglify';
 
-const plugins = [ svelte() ];
-if ( process.env.production ) {
+const prod = !process.env.ROLLUP_WATCH;
+
+const plugins = [svelte()];
+
+if (prod) {
 	plugins.push(
 		buble(),
 		closure({

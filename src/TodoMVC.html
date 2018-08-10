@@ -59,7 +59,7 @@
 			node.addEventListener('keydown', keydownHandler, false);
 
 			return {
-				teardown() {
+				destroy() {
 					node.removeEventListener('keydown', keydownHandler, false);
 				}
 			};
