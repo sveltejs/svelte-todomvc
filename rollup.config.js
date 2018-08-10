@@ -4,7 +4,7 @@ import closure from 'rollup-plugin-closure-compiler-js';
 import filesize from 'rollup-plugin-filesize';
 
 // you can use UglifyJS instead of Closure — the result will be ~3.3kb
-// import uglify from 'rollup-plugin-uglify';
+// import { uglify } from 'rollup-plugin-uglify';
 
 const plugins = [ svelte() ];
 if ( process.env.production ) {
@@ -18,9 +18,11 @@ if ( process.env.production ) {
 }
 
 export default {
-	entry: 'src/main.js',
-	dest: 'public/bundle.js',
-	format: 'iife',
-	plugins,
-	sourceMap: true
+	input: 'src/main.js',
+	output: {
+		file: 'public/bundle.js',
+		format: 'iife',
+		sourcemap: true
+	},
+	plugins
 };
