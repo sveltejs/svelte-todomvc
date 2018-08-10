@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "description": "TodoMVC implemented in Svelte",
   "scripts": {
-    "copyfiles": "mkdir -p dist && cp index.html dist/index.html && cp node_modules/todomvc-app-css/index.css dist/todomvc-app-css.css && cp node_modules/todomvc-common/base.css dist/todomvc-common.css && cp node_modules/todomvc-common/base.js dist/todomvc-common.js",
+    "copyfiles": "mkdir -p dist && cp node_modules/todomvc-app-css/index.css public/todomvc-app-css.css && cp node_modules/todomvc-common/base.css public/todomvc-common.css && cp node_modules/todomvc-common/base.js public/todomvc-common.js",
     "build": "npm run copyfiles && rollup -c",
-    "build:min": "npm run copyfiles && rollup -c --environment production",
-    "dev": "npm run copyfiles && rollup -c -w",
-    "deploy": "surge dist svelte-todomvc.surge.sh",
-    "predeploy": "npm run build:min",
-    "start": "http-server dist & npm run dev"
+    "dev": "npm run copyfiles && rollup -cw",
+    "deploy": "surge public svelte-todomvc.surge.sh",
+    "predeploy": "npm run build",
+    "start": "http-server public & npm run dev & open http://localhost:8080"
   },
   "files": [
     "index.html",
-    "dist",
+    "public",
     "node_modules/todomvc-app-css/index.css"
   ],
   "repository": {
@@ -31,14 +30,17 @@
   },
   "homepage": "https://github.com/sveltejs/svelte-todomvc",
   "dependencies": {
-    "todomvc-app-css": "^2.0.6",
-    "todomvc-common": "^1.0.3"
+    "todomvc-app-css": "2.1.2",
+    "todomvc-common": "^1.0.5"
   },
   "devDependencies": {
-    "rollup": "^0.36.3",
-    "rollup-plugin-buble": "^0.14.0",
-    "rollup-plugin-svelte": "^0.3.0",
-    "rollup-plugin-uglify": "^1.0.1",
-    "surge": "^0.18.0"
+    "@ampproject/rollup-plugin-closure-compiler": "^0.6.1",
+    "rollup": "^0.64.1",
+    "rollup-plugin-buble": "^0.19.2",
+    "rollup-plugin-filesize": "^4.0.1",
+    "rollup-plugin-svelte": "^4.2.1",
+    "rollup-plugin-terser": "^1.0.1",
+    "surge": "^0.20.1",
+    "svelte": "2.9.11"
   }
 }

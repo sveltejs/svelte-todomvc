@@ -1,14 +1,20 @@
 import svelte from 'rollup-plugin-svelte';
-import buble from 'rollup-plugin-buble';
-import uglify from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
+import closure from '@ampproject/rollup-plugin-closure-compiler';
+import filesize from 'rollup-plugin-filesize';
 
-const plugins = [ svelte() ];
-if ( process.env.production ) plugins.push( buble(), uglify() );
+const prod = !process.env.ROLLUP_WATCH;
 
 export default {
-	entry: 'src/app.js',
-	dest: 'dist/bundle.js',
-	format: 'iife',
-	plugins,
-	sourceMap: true
+	input: 'src/main.js',
+	output: {
+		file: 'public/bundle.js',
+		format: 'iife',
+		sourcemap: true
+	},
+	plugins: [
+		svelte(),
+		prod && terser(), // you can also try `closure()`
+		prod && filesize()
+	]
 };
