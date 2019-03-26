@@ -30,17 +30,18 @@
   },
   "homepage": "https://github.com/sveltejs/svelte-todomvc",
   "dependencies": {
-    "todomvc-app-css": "2.1.2",
+    "todomvc-app-css": "2.2.0",
     "todomvc-common": "^1.0.5"
   },
   "devDependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "^0.6.1",
-    "rollup": "^0.64.1",
+    "@ampproject/rollup-plugin-closure-compiler": "^0.8.5",
+    "rollup": "^1.7.3",
     "rollup-plugin-buble": "^0.19.2",
-    "rollup-plugin-filesize": "^4.0.1",
-    "rollup-plugin-svelte": "^4.2.1",
-    "rollup-plugin-terser": "^1.0.1",
+    "rollup-plugin-filesize": "^6.0.1",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^4.0.4",
     "surge": "^0.20.1",
-    "svelte": "2.9.11"
+    "svelte": "^3.0.0-beta.20"
   }
 }
