@@ -69,10 +69,10 @@
 	}
 
 	function toggleCompleted(item) {
-	  items = items.map(todo => {
-	    if (item.id === todo.id) return {...todo, completed: !todo.completed};
-	    return todo;
-	  });
+	 	items = items.map(todo => {
+			if (item.id === todo.id) return {...todo, completed: !todo.completed};
+	 		return todo;
+		});
 	}
 
 	$: filtered = currentFilter === 'all'
