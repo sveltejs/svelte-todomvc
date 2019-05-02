@@ -68,6 +68,13 @@
 		});
 	}
 
+	function toggleCompleted(item) {
+	  items = items.map(todo => {
+	    if (item.id === todo.id) return {...todo, completed: !todo.completed};
+	    return todo;
+	  });
+	}
+
 	$: filtered = currentFilter === 'all'
 		? items
 		: currentFilter === 'completed'
@@ -104,7 +111,7 @@
 			{#each filtered as item, index (item.id)}
 				<li class="{item.completed ? 'completed' : ''} {editing === index ? 'editing' : ''}">
 					<div class="view">
-						<input class="toggle" type="checkbox" bind:checked={item.completed}>
+						<input class="toggle" type="checkbox" on:click={() => toggleCompleted(item)}>
 						<label on:dblclick="{() => editing = index}">{item.description}</label>
 						<button on:click="{() => remove(index)}" class="destroy"></button>
 					</div>
