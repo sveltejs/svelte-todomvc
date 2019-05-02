@@ -111,7 +111,7 @@
 			{#each filtered as item, index (item.id)}
 				<li class="{item.completed ? 'completed' : ''} {editing === index ? 'editing' : ''}">
 					<div class="view">
-						<input class="toggle" type="checkbox" on:click={() => toggleCompleted(item)}>
+						<input class="toggle" type="checkbox" checked={item.completed} on:click={() => toggleCompleted(item)}>
 						<label on:dblclick="{() => editing = index}">{item.description}</label>
 						<button on:click="{() => remove(index)}" class="destroy"></button>
 					</div>
