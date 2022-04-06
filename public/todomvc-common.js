@@ -131,7 +131,7 @@
 
 	function findRoot() {
 		var base = location.href.indexOf('examples/');
-		return location.href.substr(0, base);
+		return location.href.slice(0, base !== -1 ? base : 0);
 	}
 
 	function getFile(file, callback) {
@@ -208,13 +208,13 @@
 			var sourceLink = sourceLinks.lastElementChild;
 			// Correct link path
 			var href = sourceLink.getAttribute('href');
-			sourceLink.setAttribute('href', href.substr(href.lastIndexOf('http')));
+			sourceLink.setAttribute('href', href.slice(href.lastIndexOf('http')));
 			sourceLinks.innerHTML = heading.outerHTML + sourceLink.outerHTML;
 		} else {
 			// Localize demo links
 			var demoLinks = aside.querySelectorAll('.demo-link');
 			Array.prototype.forEach.call(demoLinks, function (demoLink) {
-				if (demoLink.getAttribute('href').substr(0, 4) !== 'http') {
+				if (demoLink.getAttribute('href').slice(0, 4) !== 'http') {
 					demoLink.setAttribute('href', findRoot() + demoLink.getAttribute('href'));
 				}
 			});
