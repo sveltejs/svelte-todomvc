@@ -5,44 +5,45 @@
 	const ENTER_KEY = 13;
 	const ESCAPE_KEY = 27;
 
+	const active = (item) => !item.completed;
+	const completed = (item) => item.completed;
+
 	let currentFilter = 'all';
 	let items = [];
 	let editing = null;
 
 	try {
 		items = JSON.parse(localStorage.getItem('todos-svelte')) || [];
-	} catch (err) {
+	} catch {
 		items = [];
 	}
 
 	$: filtered =
 		currentFilter === 'all'
 			? items
-			: currentFilter === 'completed'
-			? items.filter((item) => item.completed)
-			: items.filter((item) => !item.completed);
+			: items.filter(currentFilter === 'completed' ? completed : active);
 
-	$: numActive = items.filter((item) => !item.completed).length;
+	$: numActive = items.filter(active).length;
 
-	$: numCompleted = items.filter((item) => item.completed).length;
+	$: numCompleted = items.filter(completed).length;
 
 	$: try {
 		localStorage.setItem('todos-svelte', JSON.stringify(items));
-	} catch (err) {
+	} catch {
 		// noop
 	}
 
 	const updateView = () => {
 		currentFilter = 'all';
-		if (window.location.hash === '#/active') {
+		if (location.hash === '#/active') {
 			currentFilter = 'active';
-		} else if (window.location.hash === '#/completed') {
+		} else if (location.hash === '#/completed') {
 			currentFilter = 'completed';
 		}
 	};
 
 	function clearCompleted() {
-		items = items.filter((item) => !item.completed);
+		items = items.filter(active);
 	}
 
 	function remove(index) {
