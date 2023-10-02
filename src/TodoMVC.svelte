@@ -85,6 +85,7 @@
 
 <header class="header">
 	<h1>todos</h1>
+	<!-- svelte-ignore a11y-autofocus -->
 	<input class="new-todo" on:keydown={createNew} placeholder="What needs to be done?" autofocus />
 </header>
 
@@ -104,11 +105,13 @@
 				<li class="{item.completed ? 'completed' : ''} {editing === index ? 'editing' : ''}">
 					<div class="view">
 						<input class="toggle" type="checkbox" bind:checked={item.completed} />
+						<!-- svelte-ignore a11y-label-has-associated-control -->
 						<label on:dblclick={() => (editing = index)}>{item.description}</label>
 						<button on:click={() => remove(index)} class="destroy" />
 					</div>
 
 					{#if editing === index}
+						<!-- svelte-ignore a11y-autofocus -->
 						<input
 							value={item.description}
 							id="edit"
