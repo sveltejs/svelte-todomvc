@@ -1,5 +1,5 @@
 # svelte-todomvc
 
-**[svelte-todomvc.surge.sh](http://svelte-todomvc.surge.sh/)**
+**[todomvc.svelte.dev](https://todomvc.svelte.dev/)**
 
-[TodoMVC](http://todomvc.com/) implemented in [Svelte](https://github.com/sveltejs/svelte). The entire app weighs 3.5kb zipped.
+[TodoMVC](http://todomvc.com/) implemented in [Svelte](https://github.com/sveltejs/svelte).
