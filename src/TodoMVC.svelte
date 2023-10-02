@@ -23,7 +23,6 @@
 		}
 	};
 
-	window.addEventListener('hashchange', updateView);
 	updateView();
 
 	function clearCompleted() {
@@ -45,7 +44,7 @@
 	function createNew(event) {
 		if (event.which === ENTER_KEY) {
 			items = items.concat({
-				id: uuid(),
+				id: crypto.randomUUID(),
 				description: event.target.value,
 				completed: false
 			});
@@ -61,17 +60,6 @@
 	function submit(event) {
 		items[editing].description = event.target.value;
 		editing = null;
-	}
-
-	function uuid() {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-			/[xy]/g,
-			function (c) {
-				var r = (Math.random() * 16) | 0,
-					v = c == 'x' ? r : (r & 0x3) | 0x8;
-				return v.toString(16);
-			}
-		);
 	}
 
 	$: filtered =
@@ -92,14 +80,11 @@
 	}
 </script>
 
+<svelte:window on:hashchange={updateView} />
+
 <header class="header">
 	<h1>todos</h1>
-	<input
-		class="new-todo"
-		on:keydown={createNew}
-		placeholder="What needs to be done?"
-		autofocus
-	/>
+	<input class="new-todo" on:keydown={createNew} placeholder="What needs to be done?" autofocus />
 </header>
 
 {#if items.length > 0}
@@ -115,20 +100,10 @@
 
 		<ul class="todo-list">
 			{#each filtered as item, index (item.id)}
-				<li
-					class="{item.completed ? 'completed' : ''} {editing === index
-						? 'editing'
-						: ''}"
-				>
+				<li class="{item.completed ? 'completed' : ''} {editing === index ? 'editing' : ''}">
 					<div class="view">
-						<input
-							class="toggle"
-							type="checkbox"
-							bind:checked={item.completed}
-						/>
-						<label on:dblclick={() => (editing = index)}
-							>{item.description}</label
-						>
+						<input class="toggle" type="checkbox" bind:checked={item.completed} />
+						<label on:dblclick={() => (editing = index)}>{item.description}</label>
 						<button on:click={() => remove(index)} class="destroy" />
 					</div>
 
@@ -154,26 +129,18 @@
 
 			<ul class="filters">
 				<li>
-					<a class={currentFilter === 'all' ? 'selected' : ''} href="#/">All</a>
+					<a class:selected={currentFilter === 'all'} href="#/">All</a>
 				</li>
 				<li>
-					<a
-						class={currentFilter === 'active' ? 'selected' : ''}
-						href="#/active">Active</a
-					>
+					<a class:selected={currentFilter === 'active'} href="#/active">Active</a>
 				</li>
 				<li>
-					<a
-						class={currentFilter === 'completed' ? 'selected' : ''}
-						href="#/completed">Completed</a
-					>
+					<a class:selected={currentFilter === 'completed'} href="#/completed">Completed</a>
 				</li>
 			</ul>
 
 			{#if numCompleted}
-				<button class="clear-completed" on:click={clearCompleted}>
-					Clear completed
-				</button>
+				<button class="clear-completed" on:click={clearCompleted}>Clear completed</button>
 			{/if}
 		</footer>
 	</section>
