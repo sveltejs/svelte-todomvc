@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-framework="svelte">
+	<head>
+		<meta charset="utf-8">
+		<title>Svelte • TodoMVC</title>
+		<link rel="icon" type="image/png" href="/favicon.png" />
+	</head>
+	<body>
+		<section class="todoapp"></section>
+		<footer class="info">
+			<p>Double-click to edit a todo</p>
+			<p>Written by <a href="https://twitter.com/Rich_Harris">Rich Harris</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+
+		<script type="module">
+			import TodoMVC from './src/TodoMVC.svelte';
+			window.todomvc = new TodoMVC({
+				target: document.querySelector('.todoapp')
+			});
+		</script>
+
+		<script defer src="/todomvc-common/base.js"></script>
+		<link rel="stylesheet" href="/todomvc-common/base.css">
+	</body>
+</html>
