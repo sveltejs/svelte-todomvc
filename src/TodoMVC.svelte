@@ -1,5 +1,6 @@
 <script>
 	import 'todomvc-app-css/index.css';
+	import { onMount } from 'svelte';
 
 	const ENTER_KEY = 13;
 	const ESCAPE_KEY = 27;
@@ -14,6 +15,23 @@
 		items = [];
 	}
 
+	$: filtered =
+		currentFilter === 'all'
+			? items
+			: currentFilter === 'completed'
+			? items.filter((item) => item.completed)
+			: items.filter((item) => !item.completed);
+
+	$: numActive = items.filter((item) => !item.completed).length;
+
+	$: numCompleted = items.filter((item) => item.completed).length;
+
+	$: try {
+		localStorage.setItem('todos-svelte', JSON.stringify(items));
+	} catch (err) {
+		// noop
+	}
+
 	const updateView = () => {
 		currentFilter = 'all';
 		if (window.location.hash === '#/active') {
@@ -22,8 +40,6 @@
 			currentFilter = 'completed';
 		}
 	};
-
-	updateView();
 
 	function clearCompleted() {
 		items = items.filter((item) => !item.completed);
@@ -62,22 +78,7 @@
 		editing = null;
 	}
 
-	$: filtered =
-		currentFilter === 'all'
-			? items
-			: currentFilter === 'completed'
-			? items.filter((item) => item.completed)
-			: items.filter((item) => !item.completed);
-
-	$: numActive = items.filter((item) => !item.completed).length;
-
-	$: numCompleted = items.filter((item) => item.completed).length;
-
-	$: try {
-		localStorage.setItem('todos-svelte', JSON.stringify(items));
-	} catch (err) {
-		// noop
-	}
+	onMount(updateView);
 </script>
 
 <svelte:window on:hashchange={updateView} />
