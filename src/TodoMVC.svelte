@@ -75,6 +75,7 @@
 	}
 
 	function submit(event) {
+		if (!editing) return;
 		items[editing].description = event.target.value;
 		editing = null;
 	}
